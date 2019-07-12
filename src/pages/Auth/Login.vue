@@ -24,7 +24,7 @@
             </v-form>
         </v-card>
         <v-card-actions>
-            <a href="">{{ $t('forgotPassword') }}</a><br>
+            <a @click="toPasswordReset">{{ $t('forgotPassword') }}</a><br>
             <v-spacer></v-spacer>
             <a @click="toRegister">{{ $t('register') }}</a>
             <v-spacer></v-spacer>
@@ -85,6 +85,9 @@ export default {
     },
     toRegister () {
       this.$router.push({name: 'Register'})
+    },
+    toPasswordReset () {
+      this.$router.push({name: 'PasswordResetStart'})
     }
   }
 }

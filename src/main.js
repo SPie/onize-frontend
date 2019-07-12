@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
       })
   }
 
-  if ((to.name === 'Login' || to.name === 'Register') && store.getters.getToken) {
+  if ((to.name === 'Login' || to.name === 'Register' || to.name === 'PasswordResetStart') && store.getters.getToken) {
     next({
       path: '/'
     })

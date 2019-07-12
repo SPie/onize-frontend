@@ -127,6 +127,10 @@ export default class ApiClient {
       })
   }
 
+  startPasswordReset (email) {
+    return this.post('/password-reset', {email: email})
+  }
+
   passwordChange (currentPassword, password, passwordConfirm) {
     return this.patch('/users', {currentPassword: currentPassword, password: password, passwordConfirm: passwordConfirm})
   }

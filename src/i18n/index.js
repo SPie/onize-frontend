@@ -5,9 +5,11 @@ const translations = {
     login: 'Login',
     forgotPassword: 'Forgot Password',
     register: 'Register',
+    passwordReset: 'Password Reset',
     passwordConfirm: 'Confirm Password',
     currentPassword: 'Current Password',
     changePassword: 'Change Password',
+    send: 'Send',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -24,7 +26,9 @@ const translations = {
       registerSuccess: 'Register was successful',
       registerError: 'Reister failed',
       passwordChangeSuccess: 'Password change was successful',
-      passwordChangeError: 'Password change failed'
+      passwordChangeError: 'Password change failed',
+      startedPasswordResetSuccess: 'The password reset link was successfully sent',
+      startedPasswordResetError: 'Sending password reset link failed'
     },
 
     invalidCredentials: 'Invalid credentials',
