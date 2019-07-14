@@ -131,6 +131,14 @@ export default class ApiClient {
     return this.post('/password-reset', {email: email})
   }
 
+  verifyPasswordResetToken (token) {
+    return this.get('/password-reset?resetToken=' + token)
+  }
+
+  finishPasswordReset (token, password, passwordConfirm) {
+    return this.patch('/password-reset', {resetToken: token, password: password, passwordConfirm: passwordConfirm})
+  }
+
   passwordChange (currentPassword, password, passwordConfirm) {
     return this.patch('/users', {currentPassword: currentPassword, password: password, passwordConfirm: passwordConfirm})
   }

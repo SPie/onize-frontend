@@ -28,7 +28,10 @@ const translations = {
       passwordChangeSuccess: 'Password change was successful',
       passwordChangeError: 'Password change failed',
       startedPasswordResetSuccess: 'The password reset link was successfully sent',
-      startedPasswordResetError: 'Sending password reset link failed'
+      startedPasswordResetError: 'Sending password reset link failed',
+      verifyPasswordResetError: 'Password reset token is invalid',
+      finishPasswordResetSuccess: 'Password reset was successful',
+      finishPasswordResetError: 'Password reset failed'
     },
 
     invalidCredentials: 'Invalid credentials',
