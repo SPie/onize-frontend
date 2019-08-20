@@ -40,8 +40,9 @@ export default {
   },
   methods: {
     sendReset () {
+      let finishUrl = process.env.BASE_URL + '/' + this.$router.resolve({name: 'PasswordResetFinish'}).href + '?token=TOKEN'
       this.emailErrors = []
-      this.$apiClient.startPasswordReset(this.email)
+      this.$apiClient.startPasswordReset(this.email, finishUrl)
         .then(() => {
           this.$store.commit('showSnackbar', {text: 'message.startedPasswordResetSuccess', color: 'success'})
         })

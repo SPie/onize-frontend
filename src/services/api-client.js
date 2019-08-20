@@ -127,8 +127,8 @@ export default class ApiClient {
       })
   }
 
-  startPasswordReset (email) {
-    return this.post('/password-reset', {email: email})
+  startPasswordReset (email, finishUrl) {
+    return this.post('/password-reset', {email: email, finishUrl: finishUrl})
   }
 
   verifyPasswordResetToken (token) {
