@@ -4,8 +4,17 @@
         <v-navigation-drawer
             :clipped="$vuetify.breakpoint.lgAndUp"
             v-model="drawer"
+            width="200"
+            app
             fixed
         >
+          <v-list dense>
+            <v-list-tile :to="{name: 'ProjectsList'}">
+              <v-list-tile-title class="title">
+                Projects
+              </v-list-tile-title>
+            </v-list-tile>
+          </v-list>
         </v-navigation-drawer>
         <v-toolbar
             :clipped-left="$vuetify.breakpoint.lgAndUp"

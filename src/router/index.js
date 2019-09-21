@@ -4,6 +4,7 @@ import Register from '@/pages/User/Register'
 import PasswordResetStart from '@/pages/User/PasswordResetStart'
 import SecuritySettings from '@/pages/User/SecuritySettings'
 import PasswordResetFinish from '@/pages/User/PasswordResetFinish'
+import ProjectsList from '@/pages/Project/ProjectsList'
 import Router from 'vue-router'
 import Vue from 'vue'
 
@@ -45,6 +46,12 @@ export default new Router({
       path: '/settings/security',
       name: 'SecuritySettings',
       component: SecuritySettings,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/projects',
+      name: 'ProjectsList',
+      component: ProjectsList,
       meta: {requiresAuth: true}
     }
   ]

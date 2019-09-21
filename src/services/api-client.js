@@ -142,4 +142,8 @@ export default class ApiClient {
   passwordChange (currentPassword, password, passwordConfirm) {
     return this.patch('/users', {currentPassword: currentPassword, password: password, passwordConfirm: passwordConfirm})
   }
+
+  projectsList () {
+    return this.get('/projects')
+  }
 }

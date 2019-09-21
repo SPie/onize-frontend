@@ -50,7 +50,8 @@ const translations = {
 
     pages: {
       securitySettings: 'Security Settings',
-      passwordChange: 'Password Change'
+      passwordChange: 'Password Change',
+      projects: 'Projects'
     }
   }
 }
