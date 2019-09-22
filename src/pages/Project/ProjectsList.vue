@@ -10,8 +10,10 @@
             v-for="project in projects"
             :key="project.identifier"
           >
-            <v-list-tile-title>{{ project.label }}</v-list-tile-title>
-            <v-list-tile-content>{{ project.description }}</v-list-tile-content>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ project.label }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ project.description }}</v-list-tile-sub-title>
+            </v-list-tile-content>
           </v-list-tile>
         </v-list>
       </v-card-text>
@@ -29,8 +31,8 @@ export default {
   },
   mounted () {
     this.$apiClient.projectsList()
-      .then((response) => {
-        this.projects = response.projects
+      .then((projects) => {
+        this.projects = projects
       })
   }
 }

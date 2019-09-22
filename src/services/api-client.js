@@ -144,6 +144,8 @@ export default class ApiClient {
   }
 
   projectsList () {
-    return this.get('/projects')
+    return this.get('/projects').then(response => {
+      return response.data.projects
+    })
   }
 }
