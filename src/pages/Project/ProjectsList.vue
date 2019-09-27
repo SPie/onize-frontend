@@ -16,6 +16,9 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
+        <v-card-actions>
+          <v-btn color="warning" :to="{name: 'AddProject'}" >{{ $t('addProject') }}</v-btn>
+        </v-card-actions>
       </v-card-text>
     </v-card>
   </v-flex>

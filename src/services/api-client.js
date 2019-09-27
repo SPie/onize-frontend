@@ -148,4 +148,10 @@ export default class ApiClient {
       return response.data.projects
     })
   }
+
+  addProject (label, description) {
+    return this.post('/projects', {label: label, description: description}).then(response => {
+      return response.data.project
+    })
+  }
 }

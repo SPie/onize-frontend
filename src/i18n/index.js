@@ -10,6 +10,10 @@ const translations = {
     currentPassword: 'Current Password',
     changePassword: 'Change Password',
     send: 'Send',
+    addProject: 'Add Project',
+    label: 'Label',
+    description: 'Description',
+    add: 'Add',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -31,7 +35,9 @@ const translations = {
       startedPasswordResetError: 'Sending password reset link failed',
       verifyPasswordResetError: 'Password reset token is invalid',
       finishPasswordResetSuccess: 'Password reset was successful',
-      finishPasswordResetError: 'Password reset failed'
+      finishPasswordResetError: 'Password reset failed',
+      addProjectSuccess: 'Project successfully added',
+      addProjectError: 'Add project failed'
     },
 
     invalidCredentials: 'Invalid credentials',
@@ -51,7 +57,8 @@ const translations = {
     pages: {
       securitySettings: 'Security Settings',
       passwordChange: 'Password Change',
-      projects: 'Projects'
+      projects: 'Projects',
+      addProject: 'Add Project'
     }
   }
 }

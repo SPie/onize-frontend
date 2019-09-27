@@ -5,6 +5,7 @@ import PasswordResetStart from '@/pages/User/PasswordResetStart'
 import SecuritySettings from '@/pages/User/SecuritySettings'
 import PasswordResetFinish from '@/pages/User/PasswordResetFinish'
 import ProjectsList from '@/pages/Project/ProjectsList'
+import AddProject from '@/pages/Project/AddProject'
 import Router from 'vue-router'
 import Vue from 'vue'
 
@@ -52,6 +53,12 @@ export default new Router({
       path: '/projects',
       name: 'ProjectsList',
       component: ProjectsList,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/projects/add',
+      name: 'AddProject',
+      component: AddProject,
       meta: {requiresAuth: true}
     }
   ]
