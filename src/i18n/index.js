@@ -14,15 +14,19 @@ const translations = {
     label: 'Label',
     description: 'Description',
     add: 'Add',
+    deleteProject: 'Delete Project',
 
     settings: 'Settings',
     logout: 'Logout',
 
     dialog: {
-      close: 'Close'
+      close: 'Close',
+      delete: 'Delete',
+      cancel: 'Cancel'
     },
 
     message: {
+      notAllowed: 'This action is not allowed',
       loginSuccess: 'Login was successful',
       loginFailed: 'Login failed',
       logoutSuccess: 'Logout was successful',
@@ -37,7 +41,9 @@ const translations = {
       finishPasswordResetSuccess: 'Password reset was successful',
       finishPasswordResetError: 'Password reset failed',
       addProjectSuccess: 'Project successfully added',
-      addProjectError: 'Add project failed'
+      addProjectError: 'Add project failed',
+      deleteProjectSuccess: 'Project successfully deleted',
+      deleteProjectError: 'Delete project failed'
     },
 
     invalidCredentials: 'Invalid credentials',
@@ -59,6 +65,10 @@ const translations = {
       passwordChange: 'Password Change',
       projects: 'Projects',
       addProject: 'Add Project'
+    },
+
+    text: {
+      deleteProject: 'Do you really want to delete the project?'
     }
   }
 }

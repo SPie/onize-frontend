@@ -104,6 +104,10 @@ export default class ApiClient {
     return this.request('PATCH', path, requestParameters, config)
   }
 
+  delete (path, requestParameters, config) {
+    return this.request('DELETE', path, {}, config)
+  }
+
   login (email, password) {
     return this.post('/auth/login', {email: email, password: password, remember: true}, {withCredentials: true})
   }
@@ -153,5 +157,9 @@ export default class ApiClient {
     return this.post('/projects', {label: label, description: description}).then(response => {
       return response.data.project
     })
+  }
+
+  deleteProject (uuid) {
+    return this.delete('/projects?uuid=' + uuid)
   }
 }
