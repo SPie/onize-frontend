@@ -18,6 +18,7 @@ const translations = {
     owner: 'Owner',
     members: 'Members',
     pendingInvites: 'Pending Invites',
+    inviteUser: 'Invite User',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -25,7 +26,8 @@ const translations = {
     dialog: {
       close: 'Close',
       delete: 'Delete',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      invite: 'Invite'
     },
 
     message: {
@@ -46,7 +48,9 @@ const translations = {
       addProjectSuccess: 'Project successfully added',
       addProjectError: 'Add project failed',
       deleteProjectSuccess: 'Project successfully deleted',
-      deleteProjectError: 'Delete project failed'
+      deleteProjectError: 'Delete project failed',
+      projectInviteSuccess: 'User successfully invited to project',
+      projectInviteError: 'Invite user to project failed'
     },
 
     invalidCredentials: 'Invalid credentials',
@@ -60,7 +64,8 @@ const translations = {
       },
       password: {
         current: 'Current password doesn\'t match'
-      }
+      },
+      alreadyMember: 'The user is already member ot this project'
     },
 
     pages: {

@@ -8,6 +8,7 @@ import ProjectsList from '@/pages/Project/ProjectsList'
 import ProjectDetails from '@/pages/Project/ProjectDetails'
 import ProjectMembers from '@/pages/Project/ProjectMembers'
 import AddProject from '@/pages/Project/AddProject'
+import ProjectInviteFinish from '@/pages/Project/ProjectInviteFinish'
 import Router from 'vue-router'
 import Vue from 'vue'
 
@@ -80,6 +81,15 @@ export default new Router({
       name: 'AddProject',
       component: AddProject,
       meta: {requiresAuth: true}
+    },
+    {
+      path: '/projects/invite',
+      name: 'ProjectInviteFinish',
+      component: ProjectInviteFinish,
+      meta: {
+        requiresAuth: true,
+        requiresProject: true
+      }
     }
   ]
 })

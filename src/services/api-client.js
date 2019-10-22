@@ -168,4 +168,8 @@ export default class ApiClient {
   deleteProject (uuid) {
     return this.delete('/projects?uuid=' + uuid)
   }
+
+  projectInvite (uuid, email, inviteUrl) {
+    return this.post('/projects/invites', {uuid: uuid, email: email, inviteUrl: inviteUrl})
+  }
 }
