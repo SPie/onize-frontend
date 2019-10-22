@@ -13,7 +13,8 @@ export default new Vuex.Store({
       visible: false,
       text: '',
       color: ''
-    }
+    },
+    projectUuid: null
   },
   getters: {
     getToken: (state) => {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     getSnackbar: (state) => {
       return state.snackbar
+    },
+    getProjectUuid: (state) => {
+      return state.projectUuid
     }
   },
   mutations: {
@@ -49,6 +53,10 @@ export default new Vuex.Store({
     },
     setSnackbarVisible (state, visible) {
       state.snackbar.visible = visible
+    },
+    setProjectUuid (state, projectUuid) {
+      window.localStorage.setItem('projectUuid', projectUuid)
+      state.projectUuid = projectUuid
     }
   }
 })

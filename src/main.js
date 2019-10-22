@@ -22,29 +22,34 @@ if (window.localStorage) {
   if (token) {
     store.commit('setAuthToken', token)
   }
+
+  let projectUuid = window.localStorage.getItem('projectUuid')
+  if (projectUuid) {
+    store.commit('setProjectUuid', projectUuid)
+  }
 }
 
 // rout guard
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    if (!store.getters.getToken) {
-      next({
-        path: '/login'
-      })
-    }
-
-    apiClient.authenticatedUser()
-      .then(user => {
-        store.commit('setAuthenticatedUser', user)
-      })
-      .catch(error => {
-        if (error.response.status === 401) {
-          next({
-            path: '/login'
-          })
-        }
-      })
+  if (to.meta.requiresAuth && !store.getters.getToken) {
+    next({name: 'login'})
   }
+
+  if (to.meta.requiresProject && !store.getters.getProjectUuid) {
+    next({name: 'ProjectsList'})
+  }
+
+  apiClient.authenticatedUser()
+    .then(user => {
+      store.commit('setAuthenticatedUser', user)
+    })
+    .catch(error => {
+      if (error.response.status === 401) {
+        next({
+          path: '/login'
+        })
+      }
+    })
 
   if ((to.name === 'Login' || to.name === 'Register' || to.name === 'PasswordResetStart') && store.getters.getToken) {
     next({

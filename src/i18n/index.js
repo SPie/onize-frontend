@@ -15,6 +15,9 @@ const translations = {
     description: 'Description',
     add: 'Add',
     deleteProject: 'Delete Project',
+    owner: 'Owner',
+    members: 'Members',
+    pendingInvites: 'Pending Invites',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -64,6 +67,8 @@ const translations = {
       securitySettings: 'Security Settings',
       passwordChange: 'Password Change',
       projects: 'Projects',
+      project: 'Project',
+      projectMembers: 'Members',
       addProject: 'Add Project'
     },
 

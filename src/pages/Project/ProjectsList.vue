@@ -10,10 +10,12 @@
             v-for="project in projects"
             :key="project.identifier"
           >
-            <v-list-tile-content>
-              <v-list-tile-title>{{ project.label }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ project.description }}</v-list-tile-sub-title>
-            </v-list-tile-content>
+            <a @click="toProjectDetails(project.uuid)">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ project.label }}</v-list-tile-title>
+                <v-list-tile-sub-title>{{ project.description }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </a>
             <v-icon @click.stop="openDeleteDialog(project.uuid)">delete</v-icon>
           </v-list-tile>
         </v-list>
@@ -99,6 +101,10 @@ export default {
         .finally(() => {
           this.projectUuid = null
         })
+    },
+    toProjectDetails (projectUuid) {
+      this.$store.commit('setProjectUuid', projectUuid)
+      this.$router.push({name: 'ProjectDetails'})
     }
   }
 }

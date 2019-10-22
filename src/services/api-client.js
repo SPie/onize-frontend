@@ -153,6 +153,12 @@ export default class ApiClient {
     })
   }
 
+  projectDetails (uuid) {
+    return this.get('/projects/' + uuid).then(response => {
+      return response.data.project
+    })
+  }
+
   addProject (label, description) {
     return this.post('/projects', {label: label, description: description}).then(response => {
       return response.data.project
