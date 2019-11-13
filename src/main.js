@@ -39,17 +39,19 @@ router.beforeEach((to, from, next) => {
     next({name: 'ProjectsList'})
   }
 
-  apiClient.authenticatedUser()
-    .then(user => {
-      store.commit('setAuthenticatedUser', user)
-    })
-    .catch(error => {
-      if (error.response.status === 401) {
-        next({
-          path: '/login'
-        })
-      }
-    })
+  if (to.meta.requiresAuth) {
+    apiClient.authenticatedUser()
+      .then(user => {
+        store.commit('setAuthenticatedUser', user)
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          next({
+            path: '/login'
+          })
+        }
+      })
+  }
 
   if ((to.name === 'Login' || to.name === 'Register' || to.name === 'PasswordResetStart') && store.getters.getToken) {
     next({

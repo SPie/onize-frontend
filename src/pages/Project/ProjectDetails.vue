@@ -1,6 +1,6 @@
 <template>
-  <v-flex v-if="project">
-    <v-card class="elevation-3">
+  <v-flex>
+    <v-card class="elevation-3" v-if="project">
       <v-toolbar dark color="warning">
         <v-toolbar-title>{{ $t('pages.project') }} {{ project.label }}</v-toolbar-title>
       </v-toolbar>

@@ -172,4 +172,14 @@ export default class ApiClient {
   projectInvite (uuid, email, inviteUrl) {
     return this.post('/projects/invites', {uuid: uuid, email: email, inviteUrl: inviteUrl})
   }
+
+  addMetaDataElement (projectUuid, name, required, inList, position) {
+    return this.post(
+      '/projects/meta-data-elements',
+      {
+        uuid: projectUuid,
+        metaDataElements: [{name: name, required: required, inList: inList, position: position}]
+      }
+    )
+  }
 }

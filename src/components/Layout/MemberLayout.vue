@@ -18,6 +18,9 @@
             <v-list-tile :to="{name: 'ProjectMembers'}" v-if="hasProject">
               <v-list-tile-title class="title">{{ $t('pages.projectMembers') }}</v-list-tile-title>
             </v-list-tile>
+            <v-list-tile :to="{name: 'ProjectConfiguration'}" v-if="hasProject">
+              <v-list-tile-title class="title">{{ $t('pages.projectConfiguration') }}</v-list-tile-title>
+            </v-list-tile>
           </v-list>
         </v-navigation-drawer>
         <v-toolbar

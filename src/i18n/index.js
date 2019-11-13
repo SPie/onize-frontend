@@ -19,6 +19,10 @@ const translations = {
     members: 'Members',
     pendingInvites: 'Pending Invites',
     inviteUser: 'Invite User',
+    projectMetaDataElements: 'Project Metadata Elements',
+    required: 'Required',
+    inList: 'In List',
+    name: 'Name',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -27,7 +31,8 @@ const translations = {
       close: 'Close',
       delete: 'Delete',
       cancel: 'Cancel',
-      invite: 'Invite'
+      invite: 'Invite',
+      add: 'Add'
     },
 
     message: {
@@ -50,7 +55,9 @@ const translations = {
       deleteProjectSuccess: 'Project successfully deleted',
       deleteProjectError: 'Delete project failed',
       projectInviteSuccess: 'User successfully invited to project',
-      projectInviteError: 'Invite user to project failed'
+      projectInviteError: 'Invite user to project failed',
+      addMetaDataElementSuccess: 'Meta data element successfully added',
+      addMetaDataElementError: 'Adding meta data element failed'
     },
 
     invalidCredentials: 'Invalid credentials',
@@ -74,7 +81,9 @@ const translations = {
       projects: 'Projects',
       project: 'Project',
       projectMembers: 'Members',
-      addProject: 'Add Project'
+      addProject: 'Add Project',
+      projectConfiguration: 'Project Configuration',
+      addMetaDataElement: 'Add Meta Data Element'
     },
 
     text: {

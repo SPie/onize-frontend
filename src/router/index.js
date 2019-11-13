@@ -9,6 +9,7 @@ import ProjectDetails from '@/pages/Project/ProjectDetails'
 import ProjectMembers from '@/pages/Project/ProjectMembers'
 import AddProject from '@/pages/Project/AddProject'
 import ProjectInviteFinish from '@/pages/Project/ProjectInviteFinish'
+import ProjectConfiguration from '@/pages/Project/ProjectConfiguration'
 import Router from 'vue-router'
 import Vue from 'vue'
 
@@ -62,6 +63,15 @@ export default new Router({
       path: '/project',
       name: 'ProjectDetails',
       component: ProjectDetails,
+      meta: {
+        requiresAuth: true,
+        requiresProject: true
+      }
+    },
+    {
+      path: 'project/configuration',
+      name: 'ProjectConfiguration',
+      component: ProjectConfiguration,
       meta: {
         requiresAuth: true,
         requiresProject: true
