@@ -16,6 +16,9 @@
                 :key="metaDataElement.name"
               >
                 <v-list-tile-content>
+                  <v-list-tile-title>{{ metaDataElement.label }}</v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.name }}</v-list-tile-title>
                 </v-list-tile-content>
                 <v-list-tile-content>
@@ -41,6 +44,11 @@
         <v-card-title class="headline">{{ $t('pages.addMetaDataElement')}}</v-card-title>
         <v-card-text>
           <v-form>
+            <v-text-field
+              v-model="label"
+              :label="$t('label')"
+              :error-message="labelErrors.map(error => $t(error))"
+            ></v-text-field>
             <v-text-field
               v-model="name"
               :label="$t('name')"
@@ -87,9 +95,11 @@ export default {
       project: null,
       metaDataDialog: false,
       name: null,
+      label: null,
       required: false,
       inList: false,
       nameErrors: [],
+      labelErrors: [],
       requiredErrors: [],
       inListErrors: [],
       positionErrors: []
@@ -120,9 +130,12 @@ export default {
     },
     closeMetaDataElementDialog () {
       this.clearInput()
+      this.clearErrors()
     },
     addMetaDataElement () {
-      this.$apiClient.addMetaDataElement(this.project.uuid, this.name, this.required, this.inList, this.project.metaDataElements.length)
+      this.clearErrors()
+
+      this.$apiClient.addMetaDataElement(this.project.uuid, this.name, this.label, this.required, this.inList, this.project.metaDataElements.length)
         .then(() => {
           this.$store.commit('showSnackbar', {text: 'message.addMetaDataElementSuccess', color: 'success'})
           this.closeMetaDataElementDialog()
@@ -137,6 +150,9 @@ export default {
             if (typeof error.response.data.name !== 'undefined') {
               this.nameErrors = error.response.data.name
             }
+            if (typeof error.response.data.label !== 'undefined') {
+              this.labelErrors = error.response.data.label
+            }
             if (typeof error.response.data.required !== 'undefined') {
               this.requiredErrors = error.response.data.required
             }
@@ -148,9 +164,16 @@ export default {
     },
     clearInput () {
       this.name = null
+      this.label = null
       this.required = false
       this.inList = false
       this.metaDataDialog = false
+    },
+    clearErrors () {
+      this.nameErrors = []
+      this.labelErrors = []
+      this.requiredErrors = []
+      this.inListErrors = []
     }
   }
 }
