@@ -23,6 +23,8 @@ const translations = {
     required: 'Required',
     inList: 'In List',
     name: 'Name',
+    fieldType: 'Field Type',
+    addProjectMetaDataElement: 'Add Meta Data Element',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -83,7 +85,7 @@ const translations = {
       projectMembers: 'Members',
       addProject: 'Add Project',
       projectConfiguration: 'Project Configuration',
-      addMetaDataElement: 'Add Meta Data Element'
+      addProjectMetaDataElement: 'Add Meta Data Element'
     },
 
     text: {

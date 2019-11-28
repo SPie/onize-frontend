@@ -12,7 +12,7 @@
           <v-card-text>
             <v-list dense>
               <v-list-tile
-                v-for="metaDataElement in project.metaDataElements"
+                v-for="metaDataElement in project.projectMetaDataElements"
                 :key="metaDataElement.name"
               >
                 <v-list-tile-content>
@@ -20,6 +20,9 @@
                 </v-list-tile-content>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.name }}</v-list-tile-title>
+                </v-list-tile-content>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ metaDataElement.fieldType }}</v-list-tile-title>
                 </v-list-tile-content>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.required }}</v-list-tile-title>
@@ -31,17 +34,17 @@
             </v-list>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="warning" @click.stop="openMetaDataElementDialog()">{{ $t('addMetaDataElement') }}</v-btn>
+            <v-btn color="warning" @click.stop="openProjectMetaDataElementDialog()">{{ $t('addProjectMetaDataElement') }}</v-btn>
           </v-card-actions>
         </v-card>
       </v-card-text>
     </v-card>
     <v-dialog
-      v-model="metaDataDialog"
+      v-model="projectMetaDataDialog"
       max-width="400"
     >
       <v-card>
-        <v-card-title class="headline">{{ $t('pages.addMetaDataElement')}}</v-card-title>
+        <v-card-title class="headline">{{ $t('pages.addProjectMetaDataElement')}}</v-card-title>
         <v-card-text>
           <v-form>
             <v-text-field
@@ -54,6 +57,12 @@
               :label="$t('name')"
               :error-message="nameErrors.map(error => $t(error))"
             ></v-text-field>
+            <v-select
+              v-model="fieldType"
+              :label="$t('fieldType')"
+              :error-message="fieldTypeErrors.map(error => $t(error))"
+              :items="fieldTypes"
+            ></v-select>
             <v-switch
               v-model="required"
               :label="$t('required')"
@@ -71,13 +80,13 @@
             color="warning"
             flat="flat"
             :disabled="isEmpty"
-            @click="addMetaDataElement()"
+            @click="addProjectMetaDataElement()"
           >
             {{ $t('dialog.add') }}
           </v-btn>
           <v-btn
             flat="flat"
-            @click="closeMetaDataElementDialog()"
+            @click="closeProjectMetaDataElementDialog()"
           >
             {{ $t('dialog.cancel') }}
           </v-btn>
@@ -93,16 +102,20 @@ export default {
   data () {
     return {
       project: null,
-      metaDataDialog: false,
+      projectMetaDataDialog: false,
       name: null,
       label: null,
       required: false,
       inList: false,
+      fieldType: null,
       nameErrors: [],
       labelErrors: [],
       requiredErrors: [],
       inListErrors: [],
-      positionErrors: []
+      positionErrors: [],
+      fieldTypeErrors: [],
+
+      fieldTypes: ['text', 'number', 'date', 'email']
     }
   },
   computed: {
@@ -125,20 +138,20 @@ export default {
           this.project = project
         })
     },
-    openMetaDataElementDialog () {
-      this.metaDataDialog = true
+    openProjectMetaDataElementDialog () {
+      this.projectMetaDataDialog = true
     },
-    closeMetaDataElementDialog () {
+    closeProjectMetaDataElementDialog () {
       this.clearInput()
       this.clearErrors()
     },
-    addMetaDataElement () {
+    addProjectMetaDataElement () {
       this.clearErrors()
 
-      this.$apiClient.addMetaDataElement(this.project.uuid, this.name, this.label, this.required, this.inList, this.project.metaDataElements.length)
+      this.$apiClient.addProjectMetaDataElement(this.project.uuid, this.name, this.label, this.required, this.inList, this.project.projectMetaDataElements.length, this.fieldType)
         .then(() => {
           this.$store.commit('showSnackbar', {text: 'message.addMetaDataElementSuccess', color: 'success'})
-          this.closeMetaDataElementDialog()
+          this.closeProjectMetaDataElementDialog()
           this.getProject()
         })
         .catch(error => {
@@ -159,6 +172,9 @@ export default {
             if (typeof error.response.data.inList !== 'undefined') {
               this.inListErrors = error.response.data.inList
             }
+            if (typeof error.response.data.fieldType !== 'undefined') {
+              this.fieldTypeErrors = error.response.data.fieldType
+            }
           }
         })
     },
@@ -167,13 +183,15 @@ export default {
       this.label = null
       this.required = false
       this.inList = false
-      this.metaDataDialog = false
+      this.fieldType = null
+      this.projectMetaDataDialog = false
     },
     clearErrors () {
       this.nameErrors = []
       this.labelErrors = []
       this.requiredErrors = []
       this.inListErrors = []
+      this.fieldTypeErrors = []
     }
   }
 }
