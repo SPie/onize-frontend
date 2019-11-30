@@ -13,13 +13,10 @@
             <v-list dense>
               <v-list-tile
                 v-for="metaDataElement in project.projectMetaDataElements"
-                :key="metaDataElement.name"
+                :key="metaDataElement.uuid"
               >
                 <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.label }}</v-list-tile-title>
-                </v-list-tile-content>
-                <v-list-tile-content>
-                  <v-list-tile-title>{{ metaDataElement.name }}</v-list-tile-title>
                 </v-list-tile-content>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.fieldType }}</v-list-tile-title>
@@ -51,11 +48,6 @@
               v-model="label"
               :label="$t('label')"
               :error-message="labelErrors.map(error => $t(error))"
-            ></v-text-field>
-            <v-text-field
-              v-model="name"
-              :label="$t('name')"
-              :error-message="nameErrors.map(error => $t(error))"
             ></v-text-field>
             <v-select
               v-model="fieldType"
@@ -103,12 +95,10 @@ export default {
     return {
       project: null,
       projectMetaDataDialog: false,
-      name: null,
       label: null,
       required: false,
       inList: false,
       fieldType: null,
-      nameErrors: [],
       labelErrors: [],
       requiredErrors: [],
       inListErrors: [],
@@ -120,7 +110,7 @@ export default {
   },
   computed: {
     isEmpty () {
-      return this.name === null
+      return this.label === null
     }
   },
   beforeMount () {
@@ -148,7 +138,7 @@ export default {
     addProjectMetaDataElement () {
       this.clearErrors()
 
-      this.$apiClient.addProjectMetaDataElement(this.project.uuid, this.name, this.label, this.required, this.inList, this.project.projectMetaDataElements.length, this.fieldType)
+      this.$apiClient.addProjectMetaDataElement(this.project.uuid, this.label, this.required, this.inList, this.project.projectMetaDataElements.length, this.fieldType)
         .then(() => {
           this.$store.commit('showSnackbar', {text: 'message.addMetaDataElementSuccess', color: 'success'})
           this.closeProjectMetaDataElementDialog()
@@ -160,9 +150,6 @@ export default {
           this.$store.commit('showSnackbar', {text: 'message.addMetaDataElementError', color: 'error'})
 
           if (error.status === 422) {
-            if (typeof error.response.data.name !== 'undefined') {
-              this.nameErrors = error.response.data.name
-            }
             if (typeof error.response.data.label !== 'undefined') {
               this.labelErrors = error.response.data.label
             }
@@ -179,7 +166,6 @@ export default {
         })
     },
     clearInput () {
-      this.name = null
       this.label = null
       this.required = false
       this.inList = false
@@ -187,7 +173,6 @@ export default {
       this.projectMetaDataDialog = false
     },
     clearErrors () {
-      this.nameErrors = []
       this.labelErrors = []
       this.requiredErrors = []
       this.inListErrors = []

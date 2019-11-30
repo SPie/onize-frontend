@@ -22,7 +22,6 @@ const translations = {
     projectMetaDataElements: 'Project Metadata Elements',
     required: 'Required',
     inList: 'In List',
-    name: 'Name',
     fieldType: 'Field Type',
     addProjectMetaDataElement: 'Add Meta Data Element',
 
