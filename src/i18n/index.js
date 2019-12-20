@@ -24,6 +24,7 @@ const translations = {
     inList: 'In List',
     fieldType: 'Field Type',
     addProjectMetaDataElement: 'Add Meta Data Element',
+    deleteProjectMetaDataElement: 'Delete Project Meta Data Element',
 
     settings: 'Settings',
     logout: 'Logout',
@@ -58,7 +59,9 @@ const translations = {
       projectInviteSuccess: 'User successfully invited to project',
       projectInviteError: 'Invite user to project failed',
       addMetaDataElementSuccess: 'Meta data element successfully added',
-      addMetaDataElementError: 'Adding meta data element failed'
+      addMetaDataElementError: 'Adding meta data element failed',
+      deleteMetaDataElementSuccess: 'Project meta data element successfully deleted',
+      deleteMetaDataElementError: 'Delete project meta data element failed'
     },
 
     invalidCredentials: 'Invalid credentials',
@@ -88,7 +91,8 @@ const translations = {
     },
 
     text: {
-      deleteProject: 'Do you really want to delete the project?'
+      deleteProject: 'Do you really want to delete the project?',
+      deleteMetaDataElement: 'Do you really want do delete the meta data element?'
     }
   }
 }

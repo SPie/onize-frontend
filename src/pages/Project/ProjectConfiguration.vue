@@ -27,6 +27,11 @@
                 <v-list-tile-content>
                   <v-list-tile-title>{{ metaDataElement.inList }}</v-list-tile-title>
                 </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-btn icon @click.stop="openDeleteMetaDataElementDialog(metaDataElement.uuid)">
+                    <v-icon>delete</v-icon>
+                  </v-btn>
+                </v-list-tile-action>
               </v-list-tile>
             </v-list>
           </v-card-text>
@@ -48,23 +53,23 @@
               v-model="label"
               :label="$t('label')"
               :error-message="labelErrors.map(error => $t(error))"
-            ></v-text-field>
+            />
             <v-select
               v-model="fieldType"
               :label="$t('fieldType')"
               :error-message="fieldTypeErrors.map(error => $t(error))"
               :items="fieldTypes"
-            ></v-select>
+            />
             <v-switch
               v-model="required"
               :label="$t('required')"
               color="warning"
-            ></v-switch>
+            />
             <v-switch
               v-model="inList"
               :label="$t('inList')"
               color="warning"
-            ></v-switch>
+            />
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -85,6 +90,33 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="deleteMetaDataDialog"
+      max-width="400"
+    >
+      <v-card>
+        <v-card-title class="headline">{{ $t('deleteProjectMetaDataElement')}}</v-card-title>
+        <v-card-text>
+          {{ $t('text.deleteMetaDataElement') }}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color="warning"
+            flat="flat"
+            @click="deleteProjectMetaDataElement()"
+          >
+            {{ $t('dialog.delete') }}
+          </v-btn>
+          <v-btn
+            flat="flat"
+            @click="closeDeleteMetaDataElementDialog()"
+          >
+            {{ $t('dialog.cancel') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-flex>
 </template>
 
@@ -95,6 +127,8 @@ export default {
     return {
       project: null,
       projectMetaDataDialog: false,
+      deleteMetaDataDialog: false,
+      projectMetaDataElementUuid: null,
       label: null,
       required: false,
       inList: false,
@@ -164,6 +198,27 @@ export default {
             }
           }
         })
+    },
+    openDeleteMetaDataElementDialog (uuid) {
+      this.deleteMetaDataDialog = true
+      this.projectMetaDataElementUuid = uuid
+    },
+    closeDeleteMetaDataElementDialog () {
+      this.deleteMetaDataDialog = false
+    },
+    deleteProjectMetaDataElement () {
+      this.$apiClient.deleteProjectMetaDataElement(this.projectMetaDataElementUuid)
+        .then(() => {
+          this.$store.commit('showSnackbar', {text: 'message.deleteMetaDataElementSuccess', color: 'success'})
+          this.getProject()
+          this.closeDeleteMetaDataElementDialog()
+        })
+        .catch(() => {
+          this.$store.commit('showSnackbar', {text: 'message.deleteMetaDataElementError', color: 'error'})
+          this.closeDeleteMetaDataElementDialog()
+        })
+
+      this.projectMetaDataElementUuid = null
     },
     clearInput () {
       this.label = null

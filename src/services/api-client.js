@@ -182,4 +182,8 @@ export default class ApiClient {
       }
     )
   }
+
+  deleteProjectMetaDataElement (uuid) {
+    return this.delete('/projects/meta-data-elements?uuid=' + uuid)
+  }
 }

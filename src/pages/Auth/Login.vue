@@ -12,7 +12,7 @@
                     type="email"
                     prepend-icon="person"
                     reqired
-                ></v-text-field>
+                />
                 <v-text-field
                     v-model="password"
                     :label="$t('password')"
@@ -20,7 +20,7 @@
                     type="password"
                     prepend-icon="lock"
                     reqired
-                ></v-text-field>
+                />
             </v-form>
         </v-card>
         <v-card-actions>
